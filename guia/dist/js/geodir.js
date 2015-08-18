@@ -2,7 +2,7 @@
  GeoDir, a JavaScript library for georeferenciacion interactive and maps. http://www.geodir.co
  (c) 2014-2015, Danilo Nicolas Mendoza Ricaldi
  */
-/**
+/** 
  * An autosuggest textbox control.
  * @class
  * @scope public
