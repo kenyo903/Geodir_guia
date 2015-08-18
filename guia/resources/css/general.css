@@ -66,6 +66,10 @@ pre code{
 	font-size: 14px;
 }
 
+#content li p{
+	color:rgba(41, 92, 125, 1);
+}
+
 footer{
 	background: #616161;;
 	border-top: 2px solid #ddd;
