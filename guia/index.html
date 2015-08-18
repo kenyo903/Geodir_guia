@@ -1,37 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<link href="css/bootstrap.css" rel="stylesheet" />
-		<link href="css/bootstrap_combined.min.css" rel="stylesheet" />
-		<link href="leaflet/leaflet.css" rel="stylesheet" />
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script src="js/bootstrap.js"></script>
-		<script src="js/bootstrap_buscar.min.js"></script>
-		<script src="js/geodirautocomplete.js"></script>
-		<script src="js/geodirgeoreferenciacion.js"></script>
-		<style type="text/css">
+<html lang="es">
+    <head>
+        <title>Guia GEODIR</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="icon" type="image/png" href="http://www.geodir.co/imagenes/iconoGeoBI.png" sizes="32x32" />
+		<meta name="keywords" content="SIG,GIS,Sistemas de Informacion Geografica,Geomarketing,Georeferenciacion,Direcciones,Localizacion,LBS,Geobi,Geobusiness"/>
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/general.css"/>
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <div class="col-md-4">
+					<h1>
+						<a href="#" titele="geodir"><img src="images/logo.png"/></a>
+					</h1>
+				</div>
+				<div class="col-md-8">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							  <span class="sr-only">Desplegar navegación</span>
+							  <span class="icon-bar"></span>
+							  <span class="icon-bar"></span>
+							  <span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#">Home</a>
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+							<ul class="nav navbar-nav">
+								<li><a href="#simple">Básico</a></li>
+								<li><a href="#widget">Widget</a></li>
+							</ul>
+						</div>
+						
+					</nav>
+				</div>
+            </div>
+		</header>
 			
-		</style>
-		
-
-	</head>
-	<body>
-		<div id="canvas" style="width: 100%; height: 900px">
-			<script src="leaflet/leaflet.js"></script>
-			<script src="js/mapa.js"></script>
-			<div id="buscador" style="position: fixed; margin:10px 10px; width:400px; height:80px; padding-top: 5px;" >
-				<div class="input-group">
-					<input type="text" class="typeahead form-control" style="height: 30px;" id="txtDireccion" placeholder="Ingrese Direccion" dataprovide="typeahead"/>
-					<span class="input-group-btn">
-						<button type="submit" class="btn btn-primary" style="" onclick="geodriGeoreferenciar()" value="BUSCAR">Buscar</button>
-					</div>
-				</div>	
-				
-				
+		<div id="content" class="container">
+			<div class="row">
+                <div class="col-md-12"><h2>Guía de inicio rápido </h2></div>
+            </div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3><a name="simple">Geodir básico</a></h3>
+					<p align="justify">Aquí se detalla el uso de nuestro servicio de geolocaliazación de direcciones, el cual se puede ser consumido desde cualquier cliente solo enviando los parámetros necesarios. 
+					Mostraremos como consumir el servicio desde un Html simple con ayuda de javascript y jquery.</p>
+				</div>
 			</div>
-			
-		</div>
-		
-			
-	</body>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+						<input type="text" id="miDireccion" placeholder="Ingrese Direccion"/>
+						<button type="submit" onclick="search()">Buscar</button>
+						<input type="text" id="message" value="" placeholder="Mensaje"/>
+						<input type="text" id="result" value="" placeholder="Resultado"/>
+					  </div>
+					</div>
+					<script src="js/geodirsimple.min.js"></script>
+					<script>
+						var parametersGeodir;
+						function search(){
+							parametersGeodir ={
+									urlService: "http://www.geodir.co/geodirservice",
+									address: document.getElementById("miDireccion").value,
+									message:"",
+									location:{
+										lat:"",
+										lng:""
+									}
+							};
+							parametersGeodir=getResults(parametersGeodir);
+							setTimeout('showResults()',5000);
+						}
+						function showResults(){
+							document.getElementById("message").value=parametersGeodir.message;
+							document.getElementById("result").value=parametersGeodir.location.lat+" "+parametersGeodir.location.lng;
+						}
+					</script>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+						<ul>
+							<li>
+								<p>Incluir jQuery</p>
+								<pre><code>&lt;script src="http://code.jquery.com/jquery-1.10.2.js"&gt;&lt;/script&gt;</code></pre>
+							</li>
+							<li>
+								<p>Incluir archivo GeodirSimple javascript</p>
+								<pre><code>&lt;script src="http://www.gedodir.co/resources/customer/js/geodirsimple.js"&gt;&lt;/script&gt;</code></pre>
+							</li>
+							<li>
+								<p>Agregar una caja de texto</p>
+								<pre><code>&lt;input type="text" id="miDireccion" placeholder="Ingrese Direccion"/&gt;</code></pre>
+							</li>
+							<li>
+								<p>Agregar un botón</p>
+								<pre><code>&lt;button type="submit" onclick="search()"&gt;Buscar&lt;/button&gt;</code></pre>
+							</li>
+							<li>
+								<p>Script que consume el servicio</p>
+								<pre><code>&lt;script&gt;
+var parametersGeodir;
+function search(){
+	parametersGeodir ={
+		urlService: "http://www.geodir.co/geodirservice",
+		address: document.getElementById("miDireccion").value,
+		message:"",
+		location:{
+			lat:"",
+			lng:""
+		}
+	};
+	parametersGeodir=getResults(parametersGeodir);
+	alert("Mensaje: "+parametersGeodir.message);
+	alert("Latitud: "+parametersGeodir.lat);
+	alert("Longitug: "+parametersGeodir.lng);
+}
+&lt;/script&gt;</code></pre>
+							</li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3><a name="widget">Geodir Widget</a></h3>
+					<p align="justify">
+					Aquí se detalla como hacer el uso de nuesta API, el cual hace uso del servicio de geolocalizació de direcciones además que nos permite la visualización de los resultados de la busqueda en un formulario y un mapa.
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+							<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+							<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+							<link rel="stylesheet" href="js/geodir.css">
+							<script src="js/geodir.js"></script>
+							<style type="text/css">
+								#contendor_geodir{
+								  width: 100%;
+								} 
+							</style>
+							<div id="contendor_geodir" >
+							<input type="hidden" name="not_gonna_submit" disabled="disabled" value="invisible" />
+							<script>
+							var geodircontenido = new G.geodir('contendor_geodir',{
+								url_service:'http://www.geodir.co/geodirservice',
+								showcoordenadas:true,
+								showmap:true,    
+								mapOptions:{
+									style:{
+									  height:'300px',
+									  width:'100%',
+									}
+								  }
+							  });
+							  </script>
+							</div> 
+							
+						</div>
+					  </div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+						<ul>
+							<li>
+								<p>Incluir jQuery</p>
+								<pre><code>&lt;script src="http://code.jquery.com/jquery-1.10.2.js"&gt;&lt;/script&gt;</code></pre>
+							</li>
+							<li>
+								<p>Incluir archivo geodir javascript</p>
+								<pre><code>&lt;script src="http://www.geodir.co/resources/customer/js/geodir.js"&gt;&lt;/script&gt;</code></pre>
+							</li>
+							<li>
+								<p>Crear un "div" y colocarle un id</p>
+								<pre><code>&lt;div id="contendor_geodir"&gt;
+&lt;/div&gt;</code></pre>
+							</li>
+							<li>
+								<p>Crear un input de tipo hidden con los siguiente parametros, este input debe de estar dentro del "div" creado anteriormente</p>
+								<pre><code>&lt;input type="hidden" name="not_gonna_submit" disabled="disabled" value="invisible" /&gt;</code></pre>
+							</li>
+							<li>
+								<p>Script que hace uso de la API de geodir</p>
+								<pre><code>&lt;script&gt;
+var geodircontenido = new G.geodir('contendor_geodir',{
+	url_service:'http://www.geodir.co/geodirservice',
+	showcoordenadas:true,
+	showmap:true, 
+	mapOptions:{
+		style:{
+			height:'300px',
+			width:'100%',
+		}
+	}
+});
+&lt;/script&gt;</code></pre>
+							</li>
+							<li>
+								<p>Configurando parametros</p>
+								<ul>
+									<li>
+										<p><b>url_service:</b> ruta de del servicio</p>
+									</li>
+									<li>
+										<p><b>showcoordenadas:</b> true or false  habilita o desahabilita las cajas de texto para visualizar las coordenadas del resultado</p>
+									</li>
+									<li>
+										<p><b>showmap:</b> true or false  muestra o oculta el mapa donde se visualizara la ubicacion del resultado.</p>
+									</li>
+									<li>
+										<p><b>height:'300px'</b> define la altura del mapa</p>
+									</li>
+									<li>
+										<p><b>width:'300px'</b> define la el ancho del mapa</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+			</div>
+        </div>
+		<footer>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="footer-copyright">© 2015 GeoDir</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="footer-links">
+						<a href="http://www.geodir.co/empresa/politicasprivacidad.html">Privacidad</a> &nbsp; | &nbsp;
+						<a href="http://www.geodir.co/empresa/terminosycondiciones.html">Condiciones</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+    </body>
 </html>
