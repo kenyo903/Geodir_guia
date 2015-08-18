@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="css/bootstrap.css" rel="stylesheet" />
+		<link href="css/bootstrap_combined.min.css" rel="stylesheet" />
+		<link href="leaflet/leaflet.css" rel="stylesheet" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap_buscar.min.js"></script>
+		<script src="js/geodirautocomplete.js"></script>
+		<script src="js/geodirgeoreferenciacion.js"></script>
+		<style type="text/css">
+			
+		</style>
+		
+
+	</head>
+	<body>
+		<div id="canvas" style="width: 100%; height: 900px">
+			<script src="leaflet/leaflet.js"></script>
+			<script src="js/mapa.js"></script>
+			<div id="buscador" style="position: fixed; margin:10px 10px; width:400px; height:80px; padding-top: 5px;" >
+				<div class="input-group">
+					<input type="text" class="typeahead form-control" style="height: 30px;" id="txtDireccion" placeholder="Ingrese Direccion" dataprovide="typeahead"/>
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-primary" style="" onclick="geodriGeoreferenciar()" value="BUSCAR">Buscar</button>
+					</div>
+				</div>	
+				
+				
+			</div>
+			
+		</div>
+		
+			
+	</body>
+</html>
