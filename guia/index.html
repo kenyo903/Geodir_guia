@@ -67,7 +67,7 @@
 						<input type="text" id="result" value="" placeholder="Resultado"/>
 					  </div>
 					</div>
-					<script src="dist/js/gaodirbasic.js"></script>
+					<script src="http://www.geodir.co/customer/geodir/dist/js/gaodirbasic.js"></script>
 					<script>
 						var parametersGeodir;
 						function search(){
@@ -100,8 +100,8 @@
 								<pre><code>&lt;script src="http://code.jquery.com/jquery-2.1.4.min.js"&gt;&lt;/script&gt;</code></pre>
 							</li>
 							<li>
-								<p>Incluir archivo GeodirSimple javascript</p>
-								<pre><code>&lt;script src="http://www.gedodir.co/resources/customer/js/geodirsimple.js"&gt;&lt;/script&gt;</code></pre>
+								<p>Incluir archivo geodirbasic javascript</p>
+								<pre><code>&lt;script src="http://www.geodir.co/customer/geodir/dist/js/gaodirbasic.js"&gt;&lt;/script&gt;</code></pre>
 							</li>
 							<li>
 								<p>Agregar una caja de texto</p>
@@ -151,21 +151,22 @@ function search(){
 					  <div class="panel-body"> 
 									<link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
 							<script src="http://leafletjs.com/dist/leaflet.js"></script>
-							<link rel="stylesheet" href="dist/css/geodir-min.css"/>
-							<script src="dist/js/geodir-min.js"></script>
-							<style type="text/css">
-								#contendor_geodir{
-								  width: 100%;
-								  height: 400px;
-								} 
-							</style>
+							<link rel="stylesheet" href="http://www.geodir.co/customer/geodir/dist/css/geodir-min.css"/>
+							<script src="http://www.geodir.co/customer/geodir/dist/js/geodir-min.js"></script>
 							<div id="contendor_geodir" >
 							<input type="hidden" name="not_gonna_submit" disabled="disabled" value="invisible" />
 							<script>
 							var geodircontenido = new G.geodirGoogle('contendor_geodir',{
 								    url_service:'http://www.geodir.co/geodirservice',
 								    showcoordenadas:true,
-								    showmap:true
+								    showmap:true,
+								    mapOptions:{
+								    	style:{
+								    		height:'300px',
+								    	width:'100%'
+								    	}
+								    	
+								    }
 								  });
 							</script>
 							</div> 
@@ -186,12 +187,13 @@ function search(){
 							<li>
 								<p>Incluir Leaflet (archivos javascrit y css)</p>
 								<pre><code>&lt;script src="http://leafletjs.com/dist/leaflet.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" href="dist/css/geodir-min.css"/&gt;</code></pre>
+&lt;link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" /&gt;</code></pre>
 
 							</li>
 							<li>
-								<p>Incluir archivo geodir javascript</p>
-								<pre><code>&lt;script src="http://www.geodir.co/resources/customer/js/geodir.js"&gt;&lt;/script&gt;</code></pre>
+								<p>Incluir Geodir (archivos javascript y css)</p>
+								<pre><code>&lt;script src="http://www.geodir.co/customer/geodir/dist/js/geodir-min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="http://www.geodir.co/customer/geodir/dist/css/geodir-min.css"/&gt;</code></pre>
 							</li>
 							<li>
 								<p>Crear un "div" y colocarle un id</p>
